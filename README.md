@@ -8,5 +8,8 @@
   
 2.How to run:
   - Heroku URL: https://boiling-forest-56544.herokuapp.com/
-  - Sample run: 
-  
+  - Demo:
+    + ![](img/searchHomePage.png)
+    + ![](img/resultsPage.png)
+    + ![](img/notFoundHome.png)
+    + ![](img/notFoundResult.png)
