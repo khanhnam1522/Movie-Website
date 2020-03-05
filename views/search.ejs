@@ -2,15 +2,19 @@
 <html>
 <head>
 	<title>Movie/Game Search Application</title>
+	<link rel="stylesheet" type="text/css" href="/app.css">
 </head>
 <body>
-	<h1>Search For a Movie/Games</h1>
+	<div id= "container">
+		<h1>Search For Your Favourite Movie/Game</h1>
 
-	<form action="/results" method="GET">
-		<input type="text" name="searchName" placeholder="Name">
-		<input type="text" name="searchYear" placeholder="Year">
-		<input type="submit">
-	</form>
+		<form action="/results" method="GET">
+			<ul>Name:<input type="text" name="searchName" placeholder="Name">
+			Year:<input type="text" name="searchYear" placeholder="Year"></ul>
+
+			<input type="submit" value="Search">
+		</form>
+	</div>
 </body>
 </html>
 
