@@ -1,9 +1,10 @@
 # Movie-Games-Search
 
 1.Project description:
-  - Personal project on a web application that gathers API information from https://omdbapi.com/ using Javascript and Node.js.
-  - Setup an Express Server provides RESTful API and used EJS to implement the UI 
-  - Allowed users to input Name and published year to request specific information about the Movie/Game
+  - Personal project on a web application that gathers API information from https://omdbapi.com/ using Javascript, Node.js and MongoDB database
+  - Allowed users to search for Game/Movie by Name and Year published and reviews the application
+  - Setup an Express Server provides RESTful API and used Semantic UI library to implement the UI
+  - Used MongoDB to handle review system
   - Used Heroku to maintain constant uptime
   
 2.How to run:
