@@ -1,34 +1,25 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Movie/Game Search Application</title>
-	<link rel="stylesheet" type="text/css" href="/app.css">
-</head>
-<body>
-	<h1>Results Page!!</h1>
+<%- include ('partials/header') %>
+
 	<ul>
 		<% data["Search"].forEach(function(movie){ %>
-			<li>
-				<strong>
-					<%= movie["Title"] %>:
-				</strong> 
-			</li>		
-			<ul class = "square">
-				<% if(movie["Poster"] === "N/A"){ %>
-					<li>Poster: N/A</li>
-				<% } else { %>
-					<li><img src="<%=movie["Poster"]%>"></li>
-				<% } %>
-				<li>Year : <%= movie["Year"]%></li>
-				<li>imdbID : <%= movie["imdbID"]%></li>
-				<li>Type : <%= movie["Type"]%></li>
+			<div class = "ui main text container segment">
+				<div class = "ui huge header"><%= movie["Title"] %></div>	
+				<ul class = "square">
+					<% if(movie["Poster"] === "N/A"){ %>
+						<div class ="content">
+							<li>Poster: N/A</li>
+						</div>
+					<% } else { %>
+						<img class= "ui centered rounded image" src="<%=movie["Poster"]%>">
+					<% } %>
+					<li>Year : <%= movie["Year"]%></li>
+					<li>imdbID : <%= movie["imdbID"]%></li>
+					<li>Type : <%= movie["Type"]%></li>
 
-			</ul>
-			<p></p>
+				</ul>
+			</div>
 		<% }) %>
 	</ul>
 
-	<a href="/">Search Again</a>
-</body>
-</html>
+<%- include ('partials/footer') %>
 

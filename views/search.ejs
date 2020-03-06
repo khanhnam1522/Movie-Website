@@ -1,21 +1,25 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Movie/Game Search Application</title>
-	<link rel="stylesheet" type="text/css" href="/app.css">
-</head>
-<body>
-	<div id= "container">
-		<h1>Search For Your Favourite Movie/Game</h1>
 
-		<form action="/results" method="GET">
-			<ul>Name:<input type="text" name="searchName" placeholder="Name">
-			Year:<input type="text" name="searchYear" placeholder="Year"></ul>
 
-			<input type="submit" value="Search">
+<%- include ('partials/header') %>
+	<div class = "ui main text container segment">
+
+		<div class = "ui huge header">Search For Your Favourite Movie/Game</div>
+		
+		<form class= "ui huge form" action="/results" method="GET">
+			<div class="two fields">
+				<div class = "field">
+					<label>Name</label>
+					<input name="searchName" placeholder="Name" type="text">
+				</div>
+				<div class = "field">
+					<label>Year</label>
+					<input name="searchYear" placeholder="Year" type="text">
+				</div>
+			</div>
+			<input class = "ui submit button" type="submit" value="Search">
 		</form>
+		
 	</div>
-</body>
-</html>
+<%- include ('partials/footer') %>
 
 
