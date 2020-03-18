@@ -8,4 +8,4 @@
   - Used Heroku to maintain constant uptime
   
 2.How to run:
-  - Heroku URL: https://shielded-ridge-81600.herokuapp.com/
+  - Heroku URL: http://movie-by-nam-tang.herokuapp.com/
