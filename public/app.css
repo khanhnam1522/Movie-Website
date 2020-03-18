@@ -13,10 +13,7 @@
 	left: 0;
 	bottom: 0;
 }
-.responsive{
-	width: 100%;
-	height: auto;
-}
+
 .see-more{
 	width: 30%;
 	float: right;
@@ -94,10 +91,9 @@ dl, ol, ul {
 }
 
 .movie-details{
-	margin-top: 5%;
+	margin-top: 2%;
 	background: #222d38;
 	padding: 50px;
-	margin:auto;
 	width: 1050px;
 	
 }
@@ -191,7 +187,25 @@ dl, ol, ul {
 	color: #262626;
 	background-color: #999;
 }
- 
+
+.comment{
+	margin-top: 40px;
+	background: #222d38;
+	padding: 50px;
+	width: 1050px;
+}
+.commentForm{
+	margin:auto;
+	color: #e1ebe4;
+}
+.comment h3{
+	margin-bottom: 30px;
+	color: #dacb46;
+}
+.commentBox{
+	margin-top: 30px;
+	color: #e1ebe4;
+}
 @media (max-width: 767px) {
 	.dropdown-menu.multi-column {
 		min-width: 240px !important;

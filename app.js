@@ -15,7 +15,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 var commentSchema = new mongoose.Schema({
 	name: String,
 	created: {type:Date, default: Date.now},
-	body: String
+	body: String,
+	id: Number
 });
 var comment = mongoose.model("Comments", commentSchema);
 
@@ -43,25 +44,28 @@ app.get("/", function(req,res){
 	});
 });
 
-app.get("/results", function(req,res){
+//search
+app.get("/search/:page", function(req,res){
 	var data = [];
 	var queryName = req.query.searchName;
-	var url = "https://api.themoviedb.org/3/search/movie?api_key=4930af6de9d70b7054e00ba5583e4699&language=en-US&query=" + queryName + "&page=1&include_adult=false";
+	var page = req.params.page;
+	var url = "https://api.themoviedb.org/3/search/movie?api_key=4930af6de9d70b7054e00ba5583e4699&language=en-US&query=" + queryName + "&page="+page+"&include_adult=false";
 	
 	request(url, function(error,response, body){
 		if(!error){
 			data.push(JSON.parse(body));
 			data.push(queryName);
+			data.push(page);
 			res.render("results", {data:data});
 		}
 	});
 });
 //Genres
-app.get("/genres/:id", function(req,res){
+app.get("/genres/:id/:page", function(req,res){
 	var id = req.params.id;
+	var page = req.params.page;
 	var data = [];
-	var url =  "https://api.themoviedb.org/3/discover/movie?api_key=4930af6de9d70b7054e00ba5583e4699&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=" + id;
-
+	var url =  "https://api.themoviedb.org/3/discover/movie?api_key=4930af6de9d70b7054e00ba5583e4699&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page="+page+"&with_genres=" + id;
 	request(url,function(error,response, body){
 		if(!error){
 			data.push(JSON.parse(body));
@@ -69,6 +73,7 @@ app.get("/genres/:id", function(req,res){
 			request(url, function(error,response,body){
 				data.push(JSON.parse(body));
 				data.push(id);
+				data.push(page);
 				res.render("genres", {data:data});
 			});
 		}
@@ -143,7 +148,16 @@ app.get("/results/:id", function(req,res){
 										res.render("notFound");
 									} else {
 										data.push(JSON.parse(body));
-										res.render("details", {data:data});
+										comment.find({id:id}, function(err, comments){
+											if(!err){
+												data.push(comments);
+												url = "https://api.themoviedb.org/3/movie/" +id +"/reviews?api_key=4930af6de9d70b7054e00ba5583e4699&language=en-US&page=1"
+												request(url,function(error,response,body){
+													data.push(JSON.parse(body));
+													res.render("details", {data:data});
+												});
+											}	
+										});
 									}
 								}
 							});
@@ -175,16 +189,19 @@ app.get("/results/:id", function(req,res){
 // 	res.render("new");
 // });
 
-// //Post comment
-// app.post("/comments", function(req,res){
-// 	comment.create(req.body.comment, function(err, newComment){
-// 		if(err){
-// 			res.render("new");
-// 		} else {
-// 			res.redirect("/comments");
-// 		}
-// 	});
-// });
+//Post comment
+app.post("/comments/:id", function(req,res){
+	var id = req.params.id;
+	var item = req.body.comment;
+	item.id = id;
+	comment.create(item, function(err, newComment){
+		if(err){
+			res.render("new");
+		} else {
+			res.redirect("/results/"+ id);
+		}
+	});
+});
 
 app.listen(process.env.PORT || 3000, function(){
 	console.log("Movie Search App is running!!!");
