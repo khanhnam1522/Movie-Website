@@ -1,4 +1,4 @@
-# Movie-Games-Search
+# Movie-Web
 
 1.Project description:
   - Personal project on a web application that gathers API information from https://www.themoviedb.org/ using Javascript, Node.js and MongoDB database
